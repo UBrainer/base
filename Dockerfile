@@ -1,15 +1,13 @@
-# Usa docker:dind como base para permitir la ejecución de contenedores dentro de este
-FROM docker:dind
+FROM docker:latest
 
-# Instalar Git y cualquier otra dependencia necesaria
-RUN apk add --no-cache git
+# Instalar herramientas necesarias
+RUN apk add --no-cache git bash
 
-# Copiar el script que automatiza el proceso
-COPY benchmark.sh /benchmark.sh
+# Copiar el script de ejecución
+COPY run_benchmark.sh /run_benchmark.sh
+RUN chmod +x /run_benchmark.sh
 
-# Dar permisos de ejecución al script
-RUN chmod +x /benchmark.sh
+# Ejecutar el script al iniciar el contenedor
+CMD ["/bin/bash", "/run_benchmark.sh"]
 
-# Definir el punto de entrada para ejecutar el script automáticamente
-ENTRYPOINT ["/benchmark.sh"]
 
