@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+  base:
+    build: .
+    container_name: benchmark_runner
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   python:
     build: ../act2/Python
     container_name: python_benchmark
@@ -30,5 +36,6 @@ services:
     container_name: rust_benchmark
     volumes:
       - ../act2/Rust/output.txt:/output.txt
+
 
 
