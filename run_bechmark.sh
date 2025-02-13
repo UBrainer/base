@@ -2,7 +2,6 @@
 
 # Clonar el repositorio con las soluciones
 git clone https://github.com/UBrainer/act2.git
-cd act2
 
 # Ejecutar los contenedores
 docker-compose up --build --abort-on-container-exit
