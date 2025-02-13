@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clonar el repositorio con las soluciones
-git clone https://github.com/UBrainer/act2.git
+git clone https://github.com/UBrainer/act2.git solutions
 cd solutions
 
 # Ejecutar los contenedores
