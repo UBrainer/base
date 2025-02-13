@@ -15,13 +15,13 @@ services:
     build: ../act2/node
     container_name: node_benchmark
     volumes:
-      - ../act2/Node/output.txt:/output.txt
+      - ../act2/node/output.txt:/output.txt
 
   java:
     build: ../act2/java
     container_name: java_benchmark
     volumes:
-      - ../act2/Java/output.txt:/output.txt
+      - ../act2/java/output.txt:/output.txt
 
   cpp:
     build: ../act2/Cpp
@@ -33,4 +33,5 @@ services:
     build: ../act2/rust
     container_name: rust_benchmark
     volumes:
-      - ../act2/Rust/output.txt:/output.txt
+      - ../act2/rust/output.txt:/output.txt
+
