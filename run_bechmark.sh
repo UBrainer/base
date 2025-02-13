@@ -19,5 +19,3 @@ for lang in Python Cpp node java rust; do
         echo "$lang: No se encontró output.txt"
     fi
 done
-
-
