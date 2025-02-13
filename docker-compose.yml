@@ -12,13 +12,13 @@ services:
       - ../act2/Python/output.txt:/output.txt
 
   node:
-    build: ../act2/Node
+    build: ../act2/node
     container_name: node_benchmark
     volumes:
       - ../act2/Node/output.txt:/output.txt
 
   java:
-    build: ../act2/Java
+    build: ../act2/java
     container_name: java_benchmark
     volumes:
       - ../act2/Java/output.txt:/output.txt
@@ -30,7 +30,7 @@ services:
       - ../act2/Cpp/output.txt:/output.txt
 
   rust:
-    build: ../act2/Rust
+    build: ../act2/rust
     container_name: rust_benchmark
     volumes:
       - ../act2/Rust/output.txt:/output.txt
