@@ -3,44 +3,55 @@ version: "3.7"
 services:
   python:
     build:
-      context: ./Python
-    command: /bin/sh -c "time python3 solution.py"
+      context: ./  # Aquí va el contexto de construcción, puede estar vacío si ya has clonado el repositorio
+    command: /bin/sh -c "cd /app/act2/Python && time python3 solution.py"
     container_name: solucion_python
+    volumes:
+      - ./act2:/app/act2  # Montamos el repositorio act2 dentro del contenedor en /app/act2
     networks:
       - benchmark_net
 
   cpp:
     build:
-      context: ./C++
-    command: /bin/sh -c "time ./solution"
+      context: ./  # Igualmente, aquí el contexto puede estar vacío
+    command: /bin/sh -c "cd /app/act2/C++ && time ./solution"
     container_name: solucion_cpp
+    volumes:
+      - ./act2:/app/act2
     networks:
       - benchmark_net
 
   node:
     build:
-      context: ./Node
-    command: /bin/sh -c "time node solution.js"
+      context: ./
+    command: /bin/sh -c "cd /app/act2/Node && time node solution.js"
     container_name: solucion_node
+    volumes:
+      - ./act2:/app/act2
     networks:
       - benchmark_net
 
   java:
     build:
-      context: ./Java
-    command: /bin/sh -c "time java Solution"
+      context: ./ 
+    command: /bin/sh -c "cd /app/act2/Java && time java Solution"
     container_name: solucion_java
+    volumes:
+      - ./act2:/app/act2
     networks:
       - benchmark_net
 
   rust:
     build:
-      context: ./Rust
-    command: /bin/sh -c "time ./solution"
+      context: ./ 
+    command: /bin/sh -c "cd /app/act2/Rust && time ./solution"
     container_name: solucion_rust
+    volumes:
+      - ./act2:/app/act2
     networks:
       - benchmark_net
 
 networks:
   benchmark_net:
     driver: bridge
+
