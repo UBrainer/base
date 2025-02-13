@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   base:
     build: .
@@ -26,14 +24,17 @@ services:
       - ../act2/Java/output.txt:/output.txt
 
   cpp:
-    build: ../act2/C++
+    build: ../act2/Cpp
     container_name: cpp_benchmark
     volumes:
-      - ../act2/C++/output.txt:/output.txt
+      - ../act2/Cpp/output.txt:/output.txt
 
   rust:
     build: ../act2/Rust
     container_name: rust_benchmark
+    volumes:
+      - ../act2/Rust/output.txt:/output.txt
+
     volumes:
       - ../act2/Rust/output.txt:/output.txt
 
