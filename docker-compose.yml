@@ -34,9 +34,3 @@ services:
     container_name: rust_benchmark
     volumes:
       - ../act2/Rust/output.txt:/output.txt
-
-    volumes:
-      - ../act2/Rust/output.txt:/output.txt
-
-
-
