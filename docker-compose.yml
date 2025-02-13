@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  python:
+    build:
+      context: ./Python
+    command: /bin/sh -c "time python3 solution.py"
+    container_name: solucion_python
+    networks:
+      - benchmark_net
+
+  cpp:
+    build:
+      context: ./C++
+    command: /bin/sh -c "time ./solution"
+    container_name: solucion_cpp
+    networks:
+      - benchmark_net
+
+  node:
+    build:
+      context: ./Node
+    command: /bin/sh -c "time node solution.js"
+    container_name: solucion_node
+    networks:
+      - benchmark_net
+
+  java:
+    build:
+      context: ./Java
+    command: /bin/sh -c "time java Solution"
+    container_name: solucion_java
+    networks:
+      - benchmark_net
+
+  rust:
+    build:
+      context: ./Rust
+    command: /bin/sh -c "time ./solution"
+    container_name: solucion_rust
+    networks:
+      - benchmark_net
+
+networks:
+  benchmark_net:
+    driver: bridge
