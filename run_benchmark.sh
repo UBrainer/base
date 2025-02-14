@@ -11,7 +11,7 @@ docker-compose up --build --abort-on-container-exit
 echo "Resultados del Benchmark:"
 echo "--------------------------------------"
 for lang in Python Cpp node java rust; do
-    output_file="solutions/$lang/output.txt"
+    output_file="solutions/solutions/$lang/output.txt"
     if [ -f "$output_file" ]; then
         time_ms=$(cat "$output_file")
         echo "$lang: ${time_ms}ms"
