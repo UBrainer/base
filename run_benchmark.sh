@@ -10,13 +10,21 @@ echo "Lenguaje | Tiempo (ms)"
 echo "----------------------"
 
 # Recorrer cada carpeta y ejecutar su contenedor
-for lang in Cpp python node java rust; do
+for lang in cpp python node java rust; do
+    echo "Procesando $lang..."
     cd $lang
-    docker build -t benchmark-$lang . > /dev/null 2>&1
-    result=$(docker run --rm benchmark-$lang)
+
+    # Construir la imagen
+    docker build -t benchmark-$lang . || { echo "Error construyendo $lang"; exit 1; }
+
+    # Ejecutar el contenedor y capturar salida
+    result=$(docker run --rm benchmark-$lang) || { echo "Error ejecutando $lang"; exit 1; }
+    
     echo "$lang | $result"
+
     cd ..
 done
+
 
 
 
