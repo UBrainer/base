@@ -1,14 +1,21 @@
-FROM alpine:latest
+# Usamos una imagen de Docker-in-Docker (DinD) para poder ejecutar contenedores dentro de este contenedor
+FROM docker:latest  
 
-# Instalar dependencias
-RUN apk add --no-cache git docker-cli docker-compose bash
+# Instalamos dependencias necesarias
+RUN apk add --no-cache git bash
 
-# Copiar el script de benchmark al contenedor
-COPY run_benchmark.sh /run_benchmark.sh
-RUN chmod +x /run_benchmark.sh
+# Establecemos el directorio de trabajo
+WORKDIR /app
 
-# Ejecutar el script al iniciar el contenedor
-CMD ["/bin/bash", "/run_benchmark.sh"]
+# Copiamos el script que ejecutará los benchmarks
+COPY run_benchmark.sh .
+
+# Damos permisos de ejecución al script
+RUN chmod +x run_benchmark.sh
+
+# Comando por defecto al iniciar el contenedor
+CMD ["sh", "./run_benchmark.sh"]
+
 
 
 
