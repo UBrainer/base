@@ -6,32 +6,32 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   python:
-    build: ../act2/Python
+    build: ../solutions/Python
     container_name: python_benchmark
     volumes:
-      - ../act2/Python/output.txt:/output.txt
+      - ../solutions/Python/output.txt:/output.txt
 
   node:
-    build: ../act2/node
+    build: ../solutions/node
     container_name: node_benchmark
     volumes:
-      - ../act2/node/output.txt:/output.txt
+      - ../solutions/node/output.txt:/output.txt
 
   java:
-    build: ../act2/java
+    build: ../solutions/java
     container_name: java_benchmark
     volumes:
-      - ../act2/java/output.txt:/output.txt
+      - ../solutions/java/output.txt:/output.txt
 
   cpp:
-    build: ../act2/Cpp
+    build: ../solutions/Cpp
     container_name: cpp_benchmark
     volumes:
-      - ../act2/Cpp/output.txt:/output.txt
+      - ../solutions/Cpp/output.txt:/output.txt
 
   rust:
-    build: ../act2/rust
+    build: ../solutions/rust
     container_name: rust_benchmark
     volumes:
-      - ../act2/rust/output.txt:/output.txt
+      - ../solutions/rust/output.txt:/output.txt
 
