@@ -1,21 +1,29 @@
 #!/bin/bash
+set -e  # Detener el script en caso de error
 
 # Clonar el repositorio con las soluciones
-git clone https://github.com/UBrainer/act2.git solutions
-cd solutions
+git clone https://github.com/UBrainer/act2.git /benchmark
 
-# Ejecutar los contenedores
-docker-compose up --build --abort-on-container-exit
+# Definir la cabecera de la tabla
+echo -e "Lenguaje\tTiempo (ms)" > resultados.txt
 
-# Capturar resultados y mostrarlos
-echo "Resultados del Benchmark:"
-echo "--------------------------------------"
-for lang in Python Cpp node java rust; do
-    output_file="solutions/solutions/$lang/output.txt"
-    if [ -f "$output_file" ]; then
-        time_ms=$(cat "$output_file")
-        echo "$lang: ${time_ms}ms"
-    else
-        echo "$lang: No se encontró output.txt"
-    fi
+# Recorrer las carpetas de los lenguajes
+for lang in cpp python node java rust; do
+    echo "Ejecutando $lang..."
+    
+    # Construir la imagen del contenedor
+    docker build -t benchmark-$lang /benchmark/$lang
+    
+    # Ejecutar el contenedor y capturar la salida en output.txt
+    docker run --rm benchmark-$lang > /benchmark/$lang/output.txt
+    
+    # Leer el tiempo de ejecución
+    time_ms=$(cat /benchmark/$lang/output.txt)
+    
+    # Agregar el resultado a la tabla
+    echo -e "$lang\t$time_ms" >> resultados.txt
 done
+
+# Mostrar la tabla final
+cat resultados.txt
+
