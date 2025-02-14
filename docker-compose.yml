@@ -1,6 +1,6 @@
 services:
   base:
-    build:../base
+    build:../base 
     container_name: benchmark_runner
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
