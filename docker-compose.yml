@@ -1,5 +1,5 @@
 services:
-  base:
+  case:
     build: .
     container_name: benchmark_runner
     volumes:
