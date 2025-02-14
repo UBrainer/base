@@ -10,7 +10,7 @@ echo "Lenguaje | Tiempo (ms)"
 echo "----------------------"
 
 # Recorrer cada carpeta y ejecutar su contenedor
-for lang in Cpp python node java rust; do
+for lang in cpp python node java rust; do
     echo "Procesando $lang..."
     cd $lang
 
