@@ -1,20 +1,17 @@
-# Usamos una imagen de Docker-in-Docker (DinD) para poder ejecutar contenedores dentro de este contenedor
-FROM docker:latest  
+# Usamos Docker-in-Docker para permitir ejecutar contenedores dentro del contenedor base
+FROM docker:dind
 
-# Instalamos dependencias necesarias
-RUN apk add --no-cache git bash
+# Instalar dependencias necesarias
+RUN apk add --no-cache bash git
 
-# Establecemos el directorio de trabajo
-WORKDIR /app
+# Copiar el script de benchmark al contenedor
+COPY run_benchmark.sh /run_benchmark.sh
 
-# Copiamos el script que ejecutará los benchmarks
-COPY run_benchmark.sh .
+# Dar permisos de ejecución al script
+RUN chmod +x /run_benchmark.sh
 
-# Damos permisos de ejecución al script
-RUN chmod +x run_benchmark.sh
-
-# Comando por defecto al iniciar el contenedor
-CMD ["sh", "./run_benchmark.sh"]
+# Iniciar Docker en segundo plano y ejecutar el script
+CMD ["sh", "-c", "dockerd-entrypoint.sh & sleep 3 && /run_benchmark.sh"]
 
 
 
