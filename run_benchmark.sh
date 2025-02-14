@@ -1,16 +1,6 @@
 #!/bin/bash
 set -e  # Detener el script en caso de error
 
-# Iniciar Docker si no está corriendo
-dockerd &
-
-# Esperar a que Docker esté disponible
-echo "Esperando a que Docker inicie..."
-while ! docker info &>/dev/null; do
-    sleep 1
-done
-echo "Docker está listo."
-
 # Clonar el repositorio con las soluciones
 git clone https://github.com/UBrainer/act2.git /benchmark
 
