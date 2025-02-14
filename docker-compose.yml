@@ -1,6 +1,8 @@
 services:
   base:
-    build: .
+    build:
+      context: .
+      dockerfile: dockerfile  # Aquí se especifica el nombre exacto del archivo
     container_name: benchmark_runner
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
